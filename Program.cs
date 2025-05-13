@@ -1,29 +1,32 @@
-﻿namespace cs_oop;
+﻿using cs_oop.Models;
 
-using cs_oop.Models;
+namespace cs_oop;
 
 class Program
 {
     static void Main(string[] args)
     {
-        // classi
-        // la classe è un progetto (template, ricetta, stampo) per creare degli oggetti
+        var mario = new Persona();
+        mario.Nome = "Mario";
+        mario.Cognome = "Rossi";
 
-        // oggetto
-        // un oggeto è un'entità reale (con cui posso interagire) che si basa su una classe
-        // un oggetto viene SEMPRE creato da una classe
+        Console.WriteLine(mario.Nome);
+        Console.WriteLine(mario.Cognome);
 
-        // spesso ci si riferisce ad un oggetto come istanza di una classe
+        var anna = new Persona();
+        anna.Nome = "Anna";
+        Console.WriteLine(anna.Id);
 
-        // articolo intederminativo UNA persona (classe)
-        // articolo determinativo LA persona che si chiama Gigi (ogetto o istanza)
+        Console.WriteLine($"Nascita Mario {mario.DataNascita}");
 
-        // istanzio oggetti
-        Persona gigi = new Persona();
-        Persona mario = new Persona();
-        Persona anna = new();
-        var betta = new Persona();
+        var nascitaAnna = new DateTime(2000, 1, 12);
+        anna.DataNascita = nascitaAnna;
 
+        Console.WriteLine($"Nascita Anna {anna.DataNascita}");
+
+        Console.WriteLine(mario.NomeCompleto);
+
+        Console.WriteLine($"Anna ha {anna.Anni} anni");
 
     }
 }
