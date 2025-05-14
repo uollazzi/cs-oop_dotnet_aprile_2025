@@ -2,6 +2,20 @@
 
 namespace cs_oop;
 
+// implementiamo l'incapsulamento attraverso
+// il livello di accessibilità della classe e dei suoi membri
+// public               accesso consentito a tutti
+// protected            accesso limitato alla classe che lo contiene o ai tipi che derivano dalla classe che lo contiene
+// internal             accesso limitato all'assemply (~ libreria) corrente
+// protected internal	accesso limitato all'assembly (~ libreria) corrente o ai tipi che derivano dalla classe che lo contiene
+// private              accesso limitato alla classe che lo contiene
+// private protected	accesso limitato alla classe che lo contiene o ai tipi che derivano dalla classe che lo contiene all'interno all'assemply (~ libreria) corrente
+// https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/access-modifiers
+
+// assembly: unità fondamentali di pubblicazione e riuso nelle applicazioni .NET
+//           possono assumere forma di files: .exe o .dll
+
+
 class Program
 {
     static void Main(string[] args)
@@ -15,6 +29,7 @@ class Program
 
         var anna = new Persona();
         anna.Nome = "Anna";
+        anna.Cognome = "Verdi";
         Console.WriteLine(anna.Id);
 
         Console.WriteLine($"Nascita Mario {mario.DataNascita}");
@@ -28,5 +43,16 @@ class Program
 
         Console.WriteLine($"Anna ha {anna.Anni} anni");
 
+        Console.WriteLine(mario.Saluta("Ciao", "😁😁😁😁"));
+        Console.WriteLine(anna.Saluta("Salve"));
+
+        var oggi = DateTime.Now; // Now = proprietà statica
+        var data = new DateTime(2025, 1, 1);
+
+        Console.WriteLine(Persona.CosaSono());
+
+        Console.WriteLine(anna.Indirizzo?.Citta);
+
+        anna.IMieiAnimali.Add(new Animale());
     }
 }

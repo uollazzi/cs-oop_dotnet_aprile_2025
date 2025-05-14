@@ -61,4 +61,54 @@ public class Persona
     }
 
     public int Anni { get => (int)Math.Floor(DateTime.Now.Subtract(DataNascita).TotalDays / 365); }
+
+    // metodi
+    // sono funzioni
+    public string Saluta(string tipoSaluto, string punteggiatura)
+    {
+        return $"{tipoSaluto}, sono {NomeCompleto} e ho {Anni} anni{punteggiatura}";
+    }
+
+    // overload
+    public string Saluta(string tipoSaluto)
+    {
+        return Saluta(tipoSaluto, ".");
+    }
+
+    // costruttore
+    // metodo che viene automaticamente invocato
+    // nel momento in cui istanziamo un oggetto
+    // utile anche per valorizzare proprietà in fase di creazione
+    public Persona()
+    {
+        Init();
+    }
+
+    public Persona(string nome, string cognome)
+    {
+        this.Nome = nome;
+        this.Cognome = cognome;
+        Init();
+    }
+
+    private void Init()
+    {
+        Console.WriteLine("Oggetto istanziato");
+
+    }
+
+    // membri (metodi + proprietà) statici
+    // membri che possono essere chiamati dalla classe
+    // senza che venga istamziato un oggetto
+    // di conseguenza: NON cambiano (dipendono) in base all'istanza
+    public static string Specie { get; } = "Mammifero";
+
+    public static string CosaSono()
+    {
+        return "Sono una persona.";
+    }
+
+    public Indirizzo? Indirizzo { get; set; }
+
+    public List<Animale> IMieiAnimali { get; set; } = [];
 }
