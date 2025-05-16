@@ -51,8 +51,23 @@ class Program
 
         Console.WriteLine(Persona.CosaSono());
 
+        // assegnazione veloce dei valori delle proprietà
+        // in fase di istanziamento
+        var indirizzo = new Indirizzo()
+        {
+            Via = "Via della Libertà",
+            Civico = "456",
+            CAP = "80987",
+            Provincia = "NA",
+            Citta = "Procida",
+            Stato = "Italia"
+        };
+        anna.Indirizzo = indirizzo;
+
         Console.WriteLine(anna.Indirizzo?.Citta);
 
         anna.IMieiAnimali.Add(new Animale());
+
+
     }
 }

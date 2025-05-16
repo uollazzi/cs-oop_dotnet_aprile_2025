@@ -111,4 +111,6 @@ public class Persona
     public Indirizzo? Indirizzo { get; set; }
 
     public List<Animale> IMieiAnimali { get; set; } = [];
+
+    public List<string> ColoriPreferiti { get; set; } = [];
 }
