@@ -84,10 +84,11 @@ public class Persona
         Init();
     }
 
-    public Persona(string nome, string cognome)
+    public Persona(string nome, string cognome, DateTime dataNascita)
     {
         this.Nome = nome;
         this.Cognome = cognome;
+        this.DataNascita = dataNascita;
         Init();
     }
 
@@ -109,8 +110,6 @@ public class Persona
     }
 
     public Indirizzo? Indirizzo { get; set; }
-
-    public List<Animale> IMieiAnimali { get; set; } = [];
 
     public List<string> ColoriPreferiti { get; set; } = [];
 }

@@ -1,73 +1,51 @@
 ﻿using cs_oop.Models;
 
-namespace cs_oop;
+// ereditarietà
+// L'ereditarietà consente di creare nuove classi che
+// riutilizzano, estendono e modificano il comportamento definito in altre classi
 
-// implementiamo l'incapsulamento attraverso
-// il livello di accessibilità della classe e dei suoi membri
-// public               accesso consentito a tutti
-// protected            accesso limitato alla classe che lo contiene o ai tipi che derivano dalla classe che lo contiene
-// internal             accesso limitato all'assemply (~ libreria) corrente
-// protected internal	accesso limitato all'assembly (~ libreria) corrente o ai tipi che derivano dalla classe che lo contiene
-// private              accesso limitato alla classe che lo contiene
-// private protected	accesso limitato alla classe che lo contiene o ai tipi che derivano dalla classe che lo contiene all'interno all'assemply (~ libreria) corrente
-// https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/classes-and-structs/access-modifiers
+// la classe i cui membri vengono ereditati (quella da cui si parte) si chiama classe base
+// mentre la classe che eredita (da quella base) si chiama derivata
 
-// assembly: unità fondamentali di pubblicazione e riuso nelle applicazioni .NET
-//           possono assumere forma di files: .exe o .dll
+// una classe derivata può avere SOLO UNA classe base diretta
+// l'ereditarietà, tuttavia, è transitiva (casa => casa di legno => baita (casa di legno in montagna))
 
+// l'unica cosa che la derivata non eredita dalla base è il costruttore
 
-class Program
+Cestista lebron = new Cestista()
 {
-    static void Main(string[] args)
-    {
-        var mario = new Persona();
-        mario.Nome = "Mario";
-        mario.Cognome = "Rossi";
+    Nome = "Lebron",
+    Cognome = "James",
+    DataNascita = new DateTime(1984, 12, 30)
+};
+Console.WriteLine(lebron.Saluta("Ciao"));
 
-        Console.WriteLine(mario.Nome);
-        Console.WriteLine(mario.Cognome);
+lebron.Squadra = "L.A. Lakers";
+lebron.Numero = 23;
+lebron.ValoreSchiacciata = 95;
+Console.WriteLine(lebron.Schiaccia() ? "Successo" : "Fallimento");
 
-        var anna = new Persona();
-        anna.Nome = "Anna";
-        anna.Cognome = "Verdi";
-        Console.WriteLine(anna.Id);
+var kd = new Cestista("Kevin", "Durant", new DateTime(1988, 9, 29), "Brooklin Nets", 7);
+Console.WriteLine(kd.Saluta("Salve"));
 
-        Console.WriteLine($"Nascita Mario {mario.DataNascita}");
+var nicola = new Spettatore("Nicola", "Bianchi", new DateTime(2020, 1, 1), "B45");
+Console.WriteLine(nicola.NumeroPostoASedere);
 
-        var nascitaAnna = new DateTime(2000, 1, 12);
-        anna.DataNascita = nascitaAnna;
+var alessia = new Abbonato("Alessia", "Verdi", new DateTime(1998, 5, 6), "A23", "XYZ9999");
+Console.WriteLine(alessia.Saluta("Ciao"));
+Console.WriteLine($"Abbonamento: {alessia.CodiceAbbonamento}, Posto: {alessia.NumeroPostoASedere}");
 
-        Console.WriteLine($"Nascita Anna {anna.DataNascita}");
+lebron.PartiteVinte = 199;
 
-        Console.WriteLine(mario.NomeCompleto);
-
-        Console.WriteLine($"Anna ha {anna.Anni} anni");
-
-        Console.WriteLine(mario.Saluta("Ciao", "😁😁😁😁"));
-        Console.WriteLine(anna.Saluta("Salve"));
-
-        var oggi = DateTime.Now; // Now = proprietà statica
-        var data = new DateTime(2025, 1, 1);
-
-        Console.WriteLine(Persona.CosaSono());
-
-        // assegnazione veloce dei valori delle proprietà
-        // in fase di istanziamento
-        var indirizzo = new Indirizzo()
-        {
-            Via = "Via della Libertà",
-            Civico = "456",
-            CAP = "80987",
-            Provincia = "NA",
-            Citta = "Procida",
-            Stato = "Italia"
-        };
-        anna.Indirizzo = indirizzo;
-
-        Console.WriteLine(anna.Indirizzo?.Citta);
-
-        anna.IMieiAnimali.Add(new Animale());
-
-
-    }
+// eccezioni custom (ereditiamo da Exception)
+// o anche da altre Exception più specifiche
+try
+{
+    if (nicola.Anni < 18)
+        throw new MinorenneException();
+}
+catch (MinorenneException ex)
+{
+    Console.WriteLine(ex.GetType());
+    Console.WriteLine(ex.Message);
 }
