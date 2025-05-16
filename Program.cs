@@ -1,51 +1,28 @@
 ﻿using cs_oop.Models;
 
-// ereditarietà
-// L'ereditarietà consente di creare nuove classi che
-// riutilizzano, estendono e modificano il comportamento definito in altre classi
 
-// la classe i cui membri vengono ereditati (quella da cui si parte) si chiama classe base
-// mentre la classe che eredita (da quella base) si chiama derivata
-
-// una classe derivata può avere SOLO UNA classe base diretta
-// l'ereditarietà, tuttavia, è transitiva (casa => casa di legno => baita (casa di legno in montagna))
-
-// l'unica cosa che la derivata non eredita dalla base è il costruttore
-
-Cestista lebron = new Cestista()
-{
-    Nome = "Lebron",
-    Cognome = "James",
-    DataNascita = new DateTime(1984, 12, 30)
-};
+// polimorfismo
+// significa "molte forme"
+// la classe derivata è ANCHE la classe base
+// es: un Abbonato è un Abbonato, ma ANCHE uno Spettatore, ma ANCHE una Persona
+Cestista lebron = new Cestista("Lebron", "James", new DateTime(1984, 12, 30), "L.A. Lakers", 6);
 Console.WriteLine(lebron.Saluta("Ciao"));
+Console.WriteLine($"{lebron.NomeCompleto} tipo: {lebron.GetType()}");
+Console.WriteLine($"{lebron.NomeCompleto} è Cestista: {lebron is Cestista}");
+Console.WriteLine($"{lebron.NomeCompleto} è Persona: {lebron is Persona}");
+Console.WriteLine($"{lebron.NomeCompleto} è DateTime: {lebron is DateTime}");
 
-lebron.Squadra = "L.A. Lakers";
-lebron.Numero = 23;
-lebron.ValoreSchiacciata = 95;
-Console.WriteLine(lebron.Schiaccia() ? "Successo" : "Fallimento");
+Abbonato alessia = new Abbonato("Alessia", "Marrone", new DateTime(1998, 2, 3), "A23", "XYZ000XYZ");
+Console.WriteLine($"{alessia.NomeCompleto} tipo: {alessia.GetType()}");
+Console.WriteLine($"{alessia.NomeCompleto} è Cestista: {alessia is Cestista}");
+Console.WriteLine($"{alessia.NomeCompleto} è Abbonato: {alessia is Abbonato}");
+Console.WriteLine($"{alessia.NomeCompleto} è Spettatore: {alessia is Spettatore}");
+Console.WriteLine($"{alessia.NomeCompleto} è Persona: {alessia is Persona}");
 
-var kd = new Cestista("Kevin", "Durant", new DateTime(1988, 9, 29), "Brooklin Nets", 7);
-Console.WriteLine(kd.Saluta("Salve"));
+// polimorfismo usate nei aprametri di funzione
+var kerr = new Allenatore("Steve", "Kerr", new DateTime(1965, 9, 27), "GSW");
+Console.WriteLine(kerr.Rimprovera(lebron));
+Console.WriteLine(kerr.Rimprovera(alessia));
 
-var nicola = new Spettatore("Nicola", "Bianchi", new DateTime(2020, 1, 1), "B45");
-Console.WriteLine(nicola.NumeroPostoASedere);
-
-var alessia = new Abbonato("Alessia", "Verdi", new DateTime(1998, 5, 6), "A23", "XYZ9999");
-Console.WriteLine(alessia.Saluta("Ciao"));
-Console.WriteLine($"Abbonamento: {alessia.CodiceAbbonamento}, Posto: {alessia.NumeroPostoASedere}");
-
-lebron.PartiteVinte = 199;
-
-// eccezioni custom (ereditiamo da Exception)
-// o anche da altre Exception più specifiche
-try
-{
-    if (nicola.Anni < 18)
-        throw new MinorenneException();
-}
-catch (MinorenneException ex)
-{
-    Console.WriteLine(ex.GetType());
-    Console.WriteLine(ex.Message);
-}
+var mario = new Persona("Mario", "Rossi", new DateTime(2000, 5, 6));
+Console.WriteLine(kerr.Rimprovera(mario));
