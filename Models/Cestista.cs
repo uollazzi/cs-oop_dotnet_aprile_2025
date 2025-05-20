@@ -24,4 +24,14 @@ public partial class Cestista : Persona
         Squadra = squadra;
         Numero = numero;
     }
+
+    public override string Saluta(string tipoSaluto, string punteggiatura)
+    {
+        string saluto = base.Saluta(tipoSaluto, punteggiatura);
+
+        saluto += $"\nGioco nei {Squadra} col numero {Numero}";
+
+        return saluto;
+
+    }
 }

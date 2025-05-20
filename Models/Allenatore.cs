@@ -23,4 +23,9 @@ public class Allenatore : Persona
 
         return $"{persona.NomeCompleto}, fai pù attenzione!";
     }
+
+    public override string Saluta(string TipoSaluto, string punteggiatura)
+    {
+        return $"{base.Saluta(TipoSaluto, punteggiatura)}\nAlleno i {Squadra}";
+    }
 }

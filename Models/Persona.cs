@@ -64,7 +64,9 @@ public class Persona
 
     // metodi
     // sono funzioni
-    public string Saluta(string tipoSaluto, string punteggiatura)
+
+    // virtual: permette di fare l'override
+    public virtual string Saluta(string tipoSaluto, string punteggiatura)
     {
         return $"{tipoSaluto}, sono {NomeCompleto} e ho {Anni} anni{punteggiatura}";
     }

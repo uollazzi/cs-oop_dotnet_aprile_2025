@@ -26,3 +26,21 @@ Console.WriteLine(kerr.Rimprovera(alessia));
 
 var mario = new Persona("Mario", "Rossi", new DateTime(2000, 5, 6));
 Console.WriteLine(kerr.Rimprovera(mario));
+
+// override
+// sovrascriviamo un membro della classe base
+Console.WriteLine(lebron.Saluta("Ciao", "."));
+Console.WriteLine(kerr.Saluta("Ciao", "."));
+Console.WriteLine(mario.Saluta("Ciao", "."));
+
+// classi astratte
+// classi che non possono essere istanziate direttamente
+// ma che DEVONO essere derivate
+
+// var animale = new Animale(); // errore
+var fiocco = new Gatto();
+var fufi = new Cane();
+fiocco.Dormi();
+fufi.Dormi();
+fiocco.EmettiSuono();
+fufi.EmettiSuono();
