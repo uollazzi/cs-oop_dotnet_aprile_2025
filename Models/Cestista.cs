@@ -1,6 +1,8 @@
 namespace cs_oop.Models;
 
-public partial class Cestista : Persona
+using cs_oop.Interfaces;
+
+public partial class Cestista : Persona, ITrasferibile
 {
     public Cestista()
     {
@@ -33,5 +35,10 @@ public partial class Cestista : Persona
 
         return saluto;
 
+    }
+
+    public void TrasferiscimiA(string nuovaSquadra)
+    {
+        Squadra = nuovaSquadra;
     }
 }
