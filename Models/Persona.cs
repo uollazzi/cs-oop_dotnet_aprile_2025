@@ -15,4 +15,12 @@ public class Persona
 
     [Name("dataNascita")]
     public int DataNascitaEpoch { get; set; }
+
+    public DateTimeOffset DataNascita { get => DateTimeOffset.FromUnixTimeSeconds(DataNascitaEpoch); }
+
+    // sovrascrive la rappresentazione in stringa dell'oggetto Persona
+    public override string ToString()
+    {
+        return $"{Id} - {Nome} {Cognome} nato il {DataNascita.LocalDateTime.ToString(@"dd MMMM \del yyyy")}";
+    }
 }
